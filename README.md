@@ -9,7 +9,7 @@
  - `composer require valantic-spryker/customer-storage`
  - register publisher plugins
 ```php
-    // PublisherDependencyProvider.php
+    // Zed\Publisher\PublisherDependencyProvider.php
     /**
      * @return array
      */
@@ -28,7 +28,7 @@
 ```
  - create customer storage queues
 ```php
- // Client/RabbitMq/RabbitMqConfig.php
+ // Client\RabbitMq\RabbitMqConfig.php
      /**
      * @return array
      */
@@ -67,7 +67,7 @@
 ```
  - add processor to queue:worker command
 ```php
-    // Zed/Queue/QueueDependencyProvider.php
+    // Zed\Queue\QueueDependencyProvider.php
         /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
@@ -97,7 +97,23 @@
     }
             
 ```
+ - configure the data you like to expose
+```php
+    // Zed\CustomerStorage\Business\Mapper\CustomerStorageMapper
+    protected function getCustomerStorageData(SpyCustomerEntityTransfer $customerEntityTransfer): array
+    {
+        $data = [];
+        $data['idCustomer'] = $customerEntityTransfer->getIdCustomer();
+        $data['customerGroup'] = ($customerEntityTransfer->getSpyCustomerGroupToCustomers()->count() > 0) ? ($customerEntityTransfer->getSpyCustomerGroupToCustomers()[0]->getCustomerGroup()?->getName()) : null;
+        $data['sponsorReference'] = $customerEntityTransfer->getSponsorReference();
+        $data['priceGroup'] = $customerEntityTransfer->getPriceGroup();
+        $data['store'] = $customerEntityTransfer->getSpyStore()?->getName();
+        $data['country'] = $customerEntityTransfer->getBillingAddress()?->getCountry()?->getName();
+        $data['zipCode'] = $customerEntityTransfer->getBillingAddress()?->getZipCode();
 
+        return $data;
+    }
+```
 
 # HowTos Cli
 
