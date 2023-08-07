@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\SpyCustomerAddressEntityTransfer;
 use Generated\Shared\Transfer\SpyCustomerEntityTransfer;
 use Generated\Shared\Transfer\SpyCustomerGroupEntityTransfer;
 use Generated\Shared\Transfer\SpyCustomerGroupToCustomerEntityTransfer;
-use Generated\Shared\Transfer\SpyStoreEntityTransfer;
 use Orm\Zed\Customer\Persistence\SpyCustomer;
 use Propel\Runtime\Collection\Collection;
 use Propel\Runtime\Map\TableMap;
@@ -42,7 +41,6 @@ class CustomerMapper implements CustomerMapperInterface
     {
         $customerEntityTransfer = (new SpyCustomerEntityTransfer())->fromArray($customer->toArray(), true);
 
-        $customerEntityTransfer->setSpyStore((new SpyStoreEntityTransfer())->fromArray($customer->getSpyStore()->toArray(TableMap::TYPE_CAMELNAME), true));
         if ($customer->getBillingAddress()) {
             $customerEntityTransfer->setBillingAddress((new SpyCustomerAddressEntityTransfer())->fromArray($customer->getBillingAddress()->toArray(TableMap::TYPE_CAMELNAME), true));
             $customerEntityTransfer->getBillingAddress()->setCountry((new SpyCountryEntityTransfer())->fromArray($customer->getBillingAddress()->getCountry()->toArray(TableMap::TYPE_CAMELNAME), true));
