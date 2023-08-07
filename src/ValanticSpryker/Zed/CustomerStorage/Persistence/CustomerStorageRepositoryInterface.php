@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace ValanticSpryker\Zed\CustomerStorage\Persistence;
 
+use Generated\Shared\Transfer\FilterTransfer;
+
 interface CustomerStorageRepositoryInterface
 {
     /**
@@ -19,4 +21,11 @@ interface CustomerStorageRepositoryInterface
      * @return array<\Generated\Shared\Transfer\SpyCustomerEntityTransfer>
      */
     public function getCustomerByIds(array $customerIds): array;
+
+    /**
+     * @param \Generated\Shared\Transfer\FilterTransfer $filterTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer[]
+     */
+    public function findCustomersByFilter(FilterTransfer $filterTransfer): array;
 }

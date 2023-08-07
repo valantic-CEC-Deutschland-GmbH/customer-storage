@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace ValanticSpryker\Zed\CustomerStorage\Persistence;
 
+use Generated\Shared\Transfer\FilterTransfer;
 use Orm\Zed\Customer\Persistence\SpyCustomer;
+use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -41,5 +43,20 @@ class CustomerStorageRepository extends AbstractRepository implements CustomerSt
         }
 
         return $this->getFactory()->createCustomerMapper()->mapCustomerEntitiesToCustomerEntityTransfers($customers);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FilterTransfer $filterTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer[]
+     */
+    public function findCustomersByFilter(FilterTransfer $filterTransfer): array
+    {
+        $query = $this->getFactory()->getCustomerQuery();
+        $customerEntities = $this->buildQueryFromCriteria($query, $filterTransfer)
+            ->setFormatter(ModelCriteria::FORMAT_OBJECT)
+            ->find();
+
+        return $this->getFactory()->createCustomerMapper()->mapCustomerEntitiesToCustomerTransfers($customerEntities);
     }
 }

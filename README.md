@@ -114,7 +114,13 @@
         return $data;
     }
 ```
-
+ - if you like to use `console publisher:trigger-events customer` -> register publisher plugin
+```php
+    // Zed\Publisher\PublisherDependencyProvider
+    [...]
+    new CustomerPublisherTriggerPlugin(),
+    [...]
+```
 # HowTos Cli
 
 PHP Container: `docker run -it --rm --name my-running-script -v "$PWD":/data spryker/php:latest bash`

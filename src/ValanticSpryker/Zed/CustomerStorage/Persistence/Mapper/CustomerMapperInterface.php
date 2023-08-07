@@ -22,4 +22,11 @@ interface CustomerMapperInterface
      * @return array<\Generated\Shared\Transfer\SpyCustomerEntityTransfer>
      */
     public function mapSpyCustomerToCustomerEntityTransfers(SpyCustomer $customer): array;
+
+    /**
+     * @param \Propel\Runtime\Collection\Collection $customers
+     *
+     * @return array
+     */
+    public function mapCustomerEntitiesToCustomerTransfers(Collection $customers): array;
 }

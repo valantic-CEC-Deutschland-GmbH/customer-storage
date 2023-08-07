@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace ValanticSpryker\Zed\CustomerStorage\Persistence\Mapper;
 
 use ArrayObject;
+use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\SpyCountryEntityTransfer;
 use Generated\Shared\Transfer\SpyCustomerAddressEntityTransfer;
 use Generated\Shared\Transfer\SpyCustomerEntityTransfer;
@@ -68,5 +69,20 @@ class CustomerMapper implements CustomerMapperInterface
         return [
             $this->getCustomerEntityTransferForSpyCustomer($customer),
         ];
+    }
+
+    /**
+     * @param \Propel\Runtime\Collection\Collection $customers
+     *
+     * @return array
+     */
+    public function mapCustomerEntitiesToCustomerTransfers(Collection $customers): array
+    {
+        $customerTransfers = [];
+        foreach ($customers as $customer) {
+            $customerTransfers[] = (new CustomerTransfer())->fromArray($customer->toArray(), true);
+        }
+
+        return $customerTransfers;
     }
 }
