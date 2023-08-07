@@ -29,7 +29,7 @@ class CustomerStorageMapper implements CustomerStorageMapperInterface
      *
      * @return array
      */
-    private function getCustomerStorageData(SpyCustomerEntityTransfer $customerEntityTransfer): array
+    protected function getCustomerStorageData(SpyCustomerEntityTransfer $customerEntityTransfer): array
     {
         // map data you like to have in storage
         return [];
