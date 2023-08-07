@@ -37,7 +37,7 @@ class CustomerStorageBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\EventBehavior\Business\EventBehaviorFacadeInterface
      */
-    private function getEventBehaviorFacade(): EventBehaviorFacadeInterface
+    public function getEventBehaviorFacade(): EventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(CustomerStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);
     }
@@ -56,7 +56,7 @@ class CustomerStorageBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \ValanticSpryker\Zed\CustomerStorage\Business\Mapper\CustomerStorageMapperInterface
      */
-    private function createCustomerStorageMapper(): CustomerStorageMapperInterface
+    public function createCustomerStorageMapper(): CustomerStorageMapperInterface
     {
         return new CustomerStorageMapper();
     }
