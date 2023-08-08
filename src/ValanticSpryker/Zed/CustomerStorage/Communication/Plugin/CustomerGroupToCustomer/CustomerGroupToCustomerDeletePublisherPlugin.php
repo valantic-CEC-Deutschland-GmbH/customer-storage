@@ -21,7 +21,7 @@ class CustomerGroupToCustomerDeletePublisherPlugin extends AbstractPlugin implem
      */
     public function handleBulk(array $eventEntityTransfers, $eventName)
     {
-        $this->getFacade()->deleteCustomerStorageCollectionByCustomerGroupToCustomerEvents($eventEntityTransfers);
+        $this->getFacade()->writeCollectionByCustomerGroupToCustomerEvents($eventEntityTransfers);
     }
 
     /**
