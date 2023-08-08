@@ -34,7 +34,6 @@ class CustomerStorageMapper implements CustomerStorageMapperInterface
         $data = [];
         $data['idCustomer'] = $customerEntityTransfer->getIdCustomer();
         $data['customerGroup'] = ($customerEntityTransfer->getSpyCustomerGroupToCustomers()->count() > 0) ? ($customerEntityTransfer->getSpyCustomerGroupToCustomers()[0]->getCustomerGroup()?->getName()) : null;
-
         $data['country'] = $customerEntityTransfer->getBillingAddress()?->getCountry()?->getName();
         $data['zipCode'] = $customerEntityTransfer->getBillingAddress()?->getZipCode();
 
