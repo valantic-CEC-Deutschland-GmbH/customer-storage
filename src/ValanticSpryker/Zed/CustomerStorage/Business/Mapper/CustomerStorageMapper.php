@@ -31,7 +31,13 @@ class CustomerStorageMapper implements CustomerStorageMapperInterface
      */
     protected function getCustomerStorageData(SpyCustomerEntityTransfer $customerEntityTransfer): array
     {
-        // map data you like to have in storage
-        return [];
+        $data = [];
+        $data['idCustomer'] = $customerEntityTransfer->getIdCustomer();
+        $data['customerGroup'] = ($customerEntityTransfer->getSpyCustomerGroupToCustomers()->count() > 0) ? ($customerEntityTransfer->getSpyCustomerGroupToCustomers()[0]->getCustomerGroup()?->getName()) : null;
+
+        $data['country'] = $customerEntityTransfer->getBillingAddress()?->getCountry()?->getName();
+        $data['zipCode'] = $customerEntityTransfer->getBillingAddress()?->getZipCode();
+
+        return $data;
     }
 }
