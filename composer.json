@@ -2,6 +2,7 @@
     "name": "valantic-spryker/customer-storage",
     "type": "library",
     "description": "Allows to publish non privacy related customer data into storage.",
+    "license": "proprietary",
     "require": {
         "php": ">=8.0",
         "spryker/customer": "^7.51",
