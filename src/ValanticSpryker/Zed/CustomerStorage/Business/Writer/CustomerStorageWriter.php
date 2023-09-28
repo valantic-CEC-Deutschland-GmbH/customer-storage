@@ -21,7 +21,7 @@ class CustomerStorageWriter implements CustomerStorageWriterInterface
      */
     public function __construct(
         private CustomerStorageEntityManagerInterface $customerStorageEntityManager,
-        private EventBehaviorFacadeInterface $eventBehaviorFacade,
+        protected EventBehaviorFacadeInterface $eventBehaviorFacade,
         private CustomerStorageRepositoryInterface $customerStorageRepository,
         private CustomerStorageMapperInterface $customerStorageMapper
     ) {
@@ -62,7 +62,7 @@ class CustomerStorageWriter implements CustomerStorageWriterInterface
      *
      * @return void
      */
-    private function writerCustomerStorageCollection(array $customerIds): void
+    protected function writerCustomerStorageCollection(array $customerIds): void
     {
         $customerEntityTransfers = $this->customerStorageRepository->getCustomerByIds($customerIds);
 
